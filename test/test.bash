@@ -19,15 +19,17 @@ grep "Listen str: ${today} is ${weekstr}"
 
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
-{ timeout 10 ros2 run mypkg zellers; } &
-timeout 10 ros2 topic echo /calc_week > /tmp/mypkg.log
+{ timeout 13 ros2 launch mypkg zellers.launch.py; } &
+# { timeout 13 ros2 run mypkg zellers; } &
+timeout 16 ros2 topic echo /calc_week > /tmp/mypkg.log
 wait
 cat /tmp/mypkg.log |
 grep "data: 3"
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
-{ timeout 10 ros2 run mypkg zellers; } &
-timeout 10 ros2 topic echo /calc_week > /tmp/mypkg.log
+{ timeout 13 ros2 launch mypkg zellers.launch.py; } &
+# { timeout 13 ros2 run mypkg zellers; } &
+timeout 16 ros2 topic echo /calc_week > /tmp/mypkg.log
 wait
 cat /tmp/mypkg.log |
 grep "data: 1"
