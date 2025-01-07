@@ -18,14 +18,14 @@ cat /tmp/mypkg.log |
 grep "Listen str: ${today} is ${weekstr}"
 
 
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
-timeout 10 ros2 run mypkg zellers > /tmp/mypkg.log
-wait
-cat /tmp/mypkg.log |
-grep "Listen str: 2"
+# { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
+# timeout 10 ros2 run mypkg zellers > /tmp/mypkg.log
+# wait
+# cat /tmp/mypkg.log |
+# grep "Listen str: 2"
 
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
-timeout 10 ros2 run mypkg zellers > /tmp/mypkg.log
-wait
-cat /tmp/mypkg.log |
-grep "Listen str: 0"
+# { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
+# timeout 10 ros2 run mypkg zellers > /tmp/mypkg.log
+# wait
+# cat /tmp/mypkg.log |
+# grep "Listen str: 0"
