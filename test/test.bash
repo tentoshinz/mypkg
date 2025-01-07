@@ -15,17 +15,17 @@ weekstr=${weekarray[${todayweek}]}
 
 timeout 10 ros2 launch mypkg future_week_calc.launch.py > /tmp/mypkg.log
 cat /tmp/mypkg.log |
-grep Listen str: ${today} is ${weekstr}
+grep "Listen str: ${today} is ${weekstr}"
 
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
 timeout 10 ros2 run mypkg zellers > /tmp/mypkg.log
 wait
 cat /tmp/mypkg.log |
-grep Listen str: 2
+grep "Listen str: 2"
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
 timeout 10 ros2 run mypkg zellers > /tmp/mypkg.log
 wait
 cat /tmp/mypkg.log |
-grep Listen str: 0
+grep "Listen str: 0"
