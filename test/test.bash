@@ -18,7 +18,7 @@ cat /tmp/mypkg.log |
 grep "Listen str: ${today} is ${weekstr}"
 
 
-ros2 run mypkg zellers
+ros2 run mypkg zellers &
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } || true &
 # { timeout 13 ros2 run mypkg zellers; } || true &
