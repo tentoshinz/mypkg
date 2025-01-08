@@ -57,6 +57,7 @@ def main():
     except ExternalShutdownException:
         pass
     finally:
+        node.get_logger().info("\n\n\n\n syattodaunn \n\n\n\n")
         node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
