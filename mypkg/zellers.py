@@ -4,6 +4,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int16, UInt32, String
+from rclpy.exceptions import ExternalShutdownException
 
 
 class Zellers(Node):
@@ -52,6 +53,8 @@ def main():
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
+        pass
+    except ExternalShutdownException:
         pass
     finally:
         node.destroy_node()
