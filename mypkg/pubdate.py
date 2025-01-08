@@ -27,11 +27,6 @@ class Pubdate(Node):
 def main():
     rclpy.init()
     node = Pubdate()
-    
-    try:
-        rclpy.spin(node)
-    except rclpy.executors.ExternalShutdownException:
-        pass
-
+    rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()

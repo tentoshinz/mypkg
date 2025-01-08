@@ -48,11 +48,6 @@ class Zellers(Node):
 def main():
     rclpy.init()
     node = Zellers()
-
-    try:
-        rclpy.spin(node)
-    except rclpy.executors.ExternalShutdownException:
-        pass
-
+    rclpy.spin(node)
     node.destroy_node()
     rclpy.shutdown()
