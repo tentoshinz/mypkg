@@ -21,6 +21,14 @@ class sub_week(Node):
 def main():
     rclpy.init()
     node= sub_week()
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+
+    try:
+        rclpy.spin(node)
+    finally:
+        node.destroy_node()
+        if rclpy.ok():
+            rclpy.shutdown()
+
+    # rclpy.spin(node)
+    # node.destroy_node()
+    # rclpy.shutdown()
