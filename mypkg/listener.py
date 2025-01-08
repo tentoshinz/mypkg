@@ -21,6 +21,11 @@ class sub_week(Node):
 def main():
     rclpy.init()
     node= sub_week()
-    rclpy.spin(node)
+
+    try:
+        rclpy.spin(node)
+    except rclpy.executors.ExternalShutdownException:
+        pass
+    
     node.destroy_node()
     rclpy.shutdown()
