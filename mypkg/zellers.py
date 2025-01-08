@@ -3,8 +3,7 @@
 
 import rclpy
 from rclpy.node import Node
-from std_msgs.msg import Int16, UInt32, String
-from rclpy.executors import ExternalShutdownException    
+from std_msgs.msg import Int16, UInt32, String 
 
 
 class Zellers(Node):
@@ -13,6 +12,7 @@ class Zellers(Node):
         self.sub = self.create_subscription(UInt32, "date", self.cb, 10)
         self.pub_week_num = self.create_publisher(Int16, "calc_week", 10)
         self.pub_week_str = self.create_publisher(String, "calc_week_str", 10)
+        self.week = ['Sat','Sun','Mon','Tue','Wed','Thu','Fri']
 
     def cb(self, msg):
         subdate = str(msg.data)
@@ -36,14 +36,12 @@ class Zellers(Node):
 
         msg_weeknum = Int16()
         msg_weekstr = String()
-        week = ['Sat','Sun','Mon','Tue','Wed','Thu','Fri']
 
         msg_weeknum.data = h
-        msg_weekstr.data = (f"{year}/{month:02d}/{day:02d} is {week[h]}")
+        msg_weekstr.data = (f"{year}/{month:02d}/{day:02d} is {self.week[h]}")
         
         self.pub_week_num.publish(msg_weeknum)
         self.pub_week_str.publish(msg_weekstr)
-
 
 
 def main():
@@ -54,8 +52,6 @@ def main():
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
-    # except ExternalShutdownException:
-    #     pass
     finally:
         node.destroy_node()
         if rclpy.ok():
