@@ -4,7 +4,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Int16, UInt32, String
-from rclpy.exceptions import ExternalShutdownException
+from rclpy.executors import ExternalShutdownException    
 
 
 class Zellers(Node):
