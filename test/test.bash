@@ -21,23 +21,22 @@ grep "Listen str: ${today} is ${weekstr}"
 ros2 run mypkg zellers &
 ROS_PID=$!
 
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } || true &
+{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; }
 # { timeout --signal=SIGINT 13 ros2 run mypkg zellers; } || true &
-{ timeout 16 ros2 topic echo /calc_week > /tmp/mypkg.log; } || true
+{ timeout 16 ros2 topic echo /calc_week > /tmp/mypkg.log; }
 # wait
 cat /tmp/mypkg.log |
 grep "data: 3"
 
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } || true &
+{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; }
 # { timeout --signal=SIGINT 13 ros2 run mypkg zellers; } || true &
-{ timeout 16 ros2 topic echo /calc_week > /tmp/mypkg.log; } || true
+{ timeout 16 ros2 topic echo /calc_week > /tmp/mypkg.log; }
 # wait
 cat /tmp/mypkg.log |
 grep "data: 1"
 
 kill -SIGINT $ROS_PID
 
-# timeout 10 ros2 run mypkg zellers
 
 
 

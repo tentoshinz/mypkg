@@ -28,7 +28,3 @@ def main():
         node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
-
-    # rclpy.spin(node)
-    # node.destroy_node()
-    # rclpy.shutdown()

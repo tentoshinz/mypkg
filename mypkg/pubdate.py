@@ -27,14 +27,10 @@ class Pubdate(Node):
 def main():
     rclpy.init()
     node = Pubdate()
-    
+
     try:
         rclpy.spin(node)
     finally:
         node.destroy_node()
         if rclpy.ok():
             rclpy.shutdown()
-
-    # rclpy.spin(node)
-    # node.destroy_node()
-    # rclpy.shutdown()
