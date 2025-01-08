@@ -50,13 +50,10 @@ def main():
     node = Zellers()
 
     try:
-        node.get_logger().info("\n\n start!! \n\n")
         rclpy.spin(node)
-        node.get_logger().info("\n\n fooo \n\n")
     finally:
         node.destroy_node()
         if rclpy.ok():
-            node.get_logger().info("\n\n weeeeee \n\n")
             rclpy.shutdown()
 
     # rclpy.spin(node)

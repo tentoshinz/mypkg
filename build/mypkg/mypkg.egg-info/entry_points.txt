@@ -1,0 +1,4 @@
+[console_scripts]
+listener = mypkg.listener:main
+pubdate = mypkg.pubdate:main
+zellers = mypkg.zellers:main
