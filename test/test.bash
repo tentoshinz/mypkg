@@ -75,6 +75,7 @@ echo jobs
 jobs
 
 kill -SIGINT $ROS_PID
+sleep 3
 
 echo killed jobs
 jobs
