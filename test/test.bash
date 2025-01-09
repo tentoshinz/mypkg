@@ -72,13 +72,13 @@ grep "data: 1" || error "$LINENO"
 
 
 echo jobs
-jobs
+jobs -l
 
 kill -SIGINT $ROS_PID
 sleep 3
 
 echo killed jobs
-jobs
+jobsn -l
 
 
 sleep 5
