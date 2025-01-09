@@ -73,6 +73,7 @@ grep "data: 1" || error "$LINENO"
 
 # kill -SIGINT $ROS_PID
 
+echo "$res"
 
 exit $res
 
