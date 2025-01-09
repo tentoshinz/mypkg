@@ -39,6 +39,10 @@ PID1=$!
 { ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
 PID2=$!
 
+sleep 10
+kill -SIGINT $PID1
+kill -SIGINT $PID2
+
 wait $PID1
 wait $PID2
 
@@ -54,6 +58,11 @@ PID1=$!
 { ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
 PID2=$!
 
+
+sleep 10
+kill -SIGINT $PID1
+kill -SIGINT $PID2
+
 wait $PID1
 wait $PID2
 
@@ -68,6 +77,11 @@ PID1=$!
 { ros2 topic echo /calc_week > /tmp/mypkg3.log; } &
 PID2=$!
 
+
+sleep 10
+kill -SIGINT $PID1
+kill -SIGINT $PID2
+
 wait $PID1
 wait $PID2
 
@@ -81,6 +95,10 @@ grep "data: 5" || error "$LINENO"
 PID1=$!
 { ros2 topic echo /calc_week > /tmp/mypkg4.log; } &
 PID2=$!
+
+sleep 10
+kill -SIGINT $PID1
+kill -SIGINT $PID2
 
 wait $PID1
 wait $PID2
