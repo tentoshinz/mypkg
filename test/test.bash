@@ -34,7 +34,7 @@ ros2 run mypkg zellers &
 ROS_PID=$!
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ timeout 10 ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
+{ timeout 10 ros2 topic echo /calc_week; }
 PID1=$!
 { ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 20040601"; }
 
@@ -51,7 +51,7 @@ grep "data: 3" || error "$LINENO"
 
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ timeout 10 ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
+{ timeout 10 ros2 topic echo /calc_week; }
 PID1=$!
 { ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 19920719"; } 
 
