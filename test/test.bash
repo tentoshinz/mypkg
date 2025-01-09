@@ -34,36 +34,36 @@ ros2 run mypkg zellers &
 ROS_PID=$!
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg.log
+timeout 12 ros2 topic echo /calc_week > /tmp/mypkg1.log
 wait $!
 sleep 2
-cat /tmp/mypkg.log
-cat /tmp/mypkg.log |
+cat /tmp/mypkg1.log
+cat /tmp/mypkg1.log |
 grep "data: 3" || error "$LINENO"
 
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg.log
+timeout 12 ros2 topic echo /calc_week > /tmp/mypkg2.log
 wait $!
 sleep 2
-cat /tmp/mypkg.log
-cat /tmp/mypkg.log |
+cat /tmp/mypkg2.log
+cat /tmp/mypkg2.log |
 grep "data: 1" || error "$LINENO"
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19780216"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg.log
+timeout 12 ros2 topic echo /calc_week > /tmp/mypkg3.log
 wait $!
 sleep 2
-cat /tmp/mypkg.log
-cat /tmp/mypkg.log |
+cat /tmp/mypkg3.log
+cat /tmp/mypkg3.log |
 grep "data: 5" || error "$LINENO"
 
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20250105"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg.log
+timeout 12 ros2 topic echo /calc_week > /tmp/mypkg4.log
 wait $!
 sleep 2
-cat /tmp/mypkg.log
-cat /tmp/mypkg.log |
+cat /tmp/mypkg4.log
+cat /tmp/mypkg4.log |
 grep "data: 1" || error "$LINENO"
 
 kill -SIGINT $ROS_PID
