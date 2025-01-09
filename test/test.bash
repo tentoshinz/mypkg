@@ -70,22 +70,29 @@ cat /tmp/mypkg4.log
 cat /tmp/mypkg4.log |
 grep "data: 1" || error "$LINENO"
 
+
+echo jobs
+jobs
+
 kill -SIGINT $ROS_PID
+
+echo killed jobs
+jobs
 
 
 sleep 5
 
 echo "res= $res"
 ls /tmp/
-# echo 0
+echo 0
 cat /tmp/mypkg.log
-# echo 1
+echo 1
 cat /tmp/mypkg1.log
-# echo 2
+echo 2
 cat /tmp/mypkg2.log
-# echo 3
+echo 3
 cat /tmp/mypkg3.log
-# echo 4
+echo 4
 cat /tmp/mypkg4.log
 
 
