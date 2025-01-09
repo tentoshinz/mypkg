@@ -73,7 +73,22 @@ grep "data: 1" || error "$LINENO"
 
 # kill -SIGINT $ROS_PID
 
+
+sleep 5
+ls /tmp/
 echo "$res"
+cat /tmp/mypkg.log
+echo 1
+cat /tmp/mypkg1.log
+echo 2
+cat /tmp/mypkg2.log
+echo 3
+cat /tmp/mypkg3.log
+echo 4
+cat /tmp/mypkg4.log
+echo 5
+cat /tmp/mypkg5.log
+
 
 exit $res
 
