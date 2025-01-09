@@ -78,7 +78,7 @@ kill -SIGINT $ROS_PID
 sleep 3
 
 echo killed jobs
-jobsn -l
+jobs -l
 
 
 sleep 5
