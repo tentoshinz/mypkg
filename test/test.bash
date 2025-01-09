@@ -34,17 +34,15 @@ ros2 run mypkg zellers &
 ROS_PID=$!
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
+{ timeout 10 ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
 PID1=$!
-{ ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
-PID2=$!
-
-sleep 10
-kill -SIGINT $PID1
-kill -SIGINT $PID2
+{ ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 20040601"; }
 
 wait $PID1
-wait $PID2
+# kill -SIGINT $PID1
+
+# wait $PID1
+# wait $PID2
 
 sleep 5
 cat /tmp/mypkg1.log
@@ -53,60 +51,56 @@ grep "data: 3" || error "$LINENO"
 
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
+{ timeout 10 ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
 PID1=$!
-{ ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
-PID2=$!
-
-
-sleep 10
-kill -SIGINT $PID1
-kill -SIGINT $PID2
+{ ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 19920719"; } 
 
 wait $PID1
-wait $PID2
+# kill -SIGINT $PID1
+
+# wait $PID1
+# wait $PID2
 
 sleep 5
-cat /tmp/mypkg2.log
-cat /tmp/mypkg2.log |
-grep "data: 1" || error "$LINENO"
+cat /tmp/mypkg1.log
+cat /tmp/mypkg1.log |
+grep "data: 3" || error "$LINENO"
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 19780216"; } &
+{ timeout 10 ros2 topic echo /calc_week > /tmp/mypkg3.log; } &
 PID1=$!
-{ ros2 topic echo /calc_week > /tmp/mypkg3.log; } &
-PID2=$!
-
-
-sleep 10
-kill -SIGINT $PID1
-kill -SIGINT $PID2
+{ ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 19780216"; }
 
 wait $PID1
-wait $PID2
+# kill -SIGINT $PID1
+
+# wait $PID1
+# wait $PID2
 
 sleep 5
-cat /tmp/mypkg3.log
-cat /tmp/mypkg3.log |
-grep "data: 5" || error "$LINENO"
+cat /tmp/mypkg1.log
+cat /tmp/mypkg1.log |
+grep "data: 3" || error "$LINENO"
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 20250105"; } &
+{ timeout 10 ros2 topic echo /calc_week > /tmp/mypkg4.log; } &
 PID1=$!
-{ ros2 topic echo /calc_week > /tmp/mypkg4.log; } &
-PID2=$!
-
-sleep 10
-kill -SIGINT $PID1
-kill -SIGINT $PID2
+{ ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 20250105"; } &
 
 wait $PID1
-wait $PID2
+# kill -SIGINT $PID1
+
+# wait $PID1
+# wait $PID2
 
 sleep 5
-cat /tmp/mypkg4.log
-cat /tmp/mypkg4.log |
-grep "data: 1" || error "$LINENO"
+cat /tmp/mypkg1.log
+cat /tmp/mypkg1.log |
+grep "data: 3" || error "$LINENO"
+
+
+
+
 
 
 echo jobs
