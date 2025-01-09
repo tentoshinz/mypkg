@@ -34,9 +34,14 @@ ros2 run mypkg zellers &
 ROS_PID=$!
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
-{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
-wait $!
+{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
+PID1=$!
+{ ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
+PID2=$!
+
+wait $PID1
+wait $PID2
+
 sleep 5
 cat /tmp/mypkg1.log
 cat /tmp/mypkg1.log |
@@ -44,27 +49,42 @@ grep "data: 3" || error "$LINENO"
 
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
-{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
-wait $!
+{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
+PID1=$!
+{ ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
+PID2=$!
+
+wait $PID1
+wait $PID2
+
 sleep 5
 cat /tmp/mypkg2.log
 cat /tmp/mypkg2.log |
 grep "data: 1" || error "$LINENO"
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19780216"; } &
-{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg3.log; } &
-wait $!
+{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 19780216"; } &
+PID1=$!
+{ ros2 topic echo /calc_week > /tmp/mypkg3.log; } &
+PID2=$!
+
+wait $PID1
+wait $PID2
+
 sleep 5
 cat /tmp/mypkg3.log
 cat /tmp/mypkg3.log |
 grep "data: 5" || error "$LINENO"
 
 # { timeout 8 ros2 run mypkg zellers; } &
-{ timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20250105"; } &
-{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg4.log; } &
-wait $!
+{ ros2 topic pub /date std_msgs/msg/UInt32 "data: 20250105"; } &
+PID1=$!
+{ ros2 topic echo /calc_week > /tmp/mypkg4.log; } &
+PID2=$!
+
+wait $PID1
+wait $PID2
+
 sleep 5
 cat /tmp/mypkg4.log
 cat /tmp/mypkg4.log |
@@ -74,6 +94,7 @@ grep "data: 1" || error "$LINENO"
 echo jobs
 jobs -l
 
+sleep 3
 kill -SIGINT $ROS_PID
 sleep 3
 
