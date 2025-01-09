@@ -36,7 +36,7 @@ grep "Listen str: ${today} is ${weekstr}" || error "$LINENO"
 
 { timeout 8 ros2 run mypkg zellers; } &
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20040601"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg1.log
+{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg1.log; } &
 wait $!
 sleep 2
 cat /tmp/mypkg1.log
@@ -46,7 +46,7 @@ grep "data: 3" || error "$LINENO"
 
 { timeout 8 ros2 run mypkg zellers; } &
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19920719"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg2.log
+{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg2.log; } &
 wait $!
 sleep 2
 cat /tmp/mypkg2.log
@@ -55,7 +55,7 @@ grep "data: 1" || error "$LINENO"
 
 { timeout 8 ros2 run mypkg zellers; } &
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 19780216"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg3.log
+{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg3.log; } &
 wait $!
 sleep 2
 cat /tmp/mypkg3.log
@@ -64,7 +64,7 @@ grep "data: 5" || error "$LINENO"
 
 { timeout 8 ros2 run mypkg zellers; } &
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20250105"; } &
-timeout 12 ros2 topic echo /calc_week > /tmp/mypkg4.log
+{ timeout 12 ros2 topic echo /calc_week > /tmp/mypkg4.log; } &
 wait $!
 sleep 2
 cat /tmp/mypkg4.log
@@ -86,8 +86,6 @@ echo 3
 cat /tmp/mypkg3.log
 echo 4
 cat /tmp/mypkg4.log
-echo 5
-cat /tmp/mypkg5.log
 
 
 exit $res
