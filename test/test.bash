@@ -26,6 +26,7 @@ weekstr=${weekarray[${todayweek}]}
 timeout 10 ros2 launch mypkg future_week_calc.launch.py > /tmp/mypkg.log
 wait $!
 sleep 2
+cat /tmp/mypkg.log
 cat /tmp/mypkg.log |
 grep "Listen str: ${today} is ${weekstr}" || error "$LINENO"
 
@@ -61,6 +62,7 @@ cat /tmp/mypkg3.log
 cat /tmp/mypkg3.log |
 grep "data: 5" || error "$LINENO"
 
+{ timeout 8 ros2 run mypkg zellers; } &
 { timeout 10 ros2 topic pub /date std_msgs/msg/UInt32 "data: 20250105"; } &
 timeout 12 ros2 topic echo /calc_week > /tmp/mypkg4.log
 wait $!
