@@ -10,6 +10,9 @@ colcon build
 source $dir/.bashrc
 
 
+res=0
+
+
 # launch test
 
 today=`date "+%Y/%m/%d"`
@@ -17,12 +20,14 @@ todayweek=`date "+%w"`
 weekarray=("Sun" "Mon" "Tue" "Wed" "Thu" "Fri" "Sat")
 weekstr=${weekarray[${todayweek}]}
 
-timeout 10 ros2 launch mypkg future_week_calc.launch.py > /tmp/mypkg1.log
+timeout 10 ros2 launch mypkg future_week_calc.launch.py > /tmp/mypkg.log
 sleep 2
-cat /tmp/mypkg1.log
-cat /tmp/mypkg1.log |
+cat /tmp/mypkg.log
+cat /tmp/mypkg.log |
 grep "Listen str: ${today} is ${weekstr}" || 
 { echo "failure: use launch"; res=$((res + 1)); }
+
+
 
 
 # zellers run test
@@ -46,8 +51,6 @@ search_str() {
 }
 
 
-
-
 ros2 run mypkg zellers &
 run_pid=$!
 
@@ -62,50 +65,22 @@ ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 19920719"
 ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 19780216"
 ros2 topic pub --once /date std_msgs/msg/UInt32 "data: 20250105"
 
-
 sleep 3
-
-cat /tmp/mypkg.log
-
-echo "kill start"
 
 kill $run_pid
 kill $echo_pid
-echo "kill now"
 wait
 sleep 3
 
-echo "kill end"
 
-sleep 2
 search_str "data: 3"
-sleep 2
 search_str "data: 1"
-sleep 2
 search_str "data: 5"
-sleep 2
 search_str "data: 1"
-sleep 2
 
 
 
-
-
-
-echo jobs
-jobs -l
-
-sleep 3
-
-echo killed jobs
-jobs -l
-
-
-sleep 5
-
-echo "res= $res"
 cat /tmp/mypkg.log
-
 
 exit $res
 
