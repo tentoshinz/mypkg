@@ -80,10 +80,15 @@ sleep 3
 
 echo "kill end"
 
+sleep 2
 search_str "data: 3"
+sleep 2
 search_str "data: 1"
+sleep 2
 search_str "data: 5"
+sleep 2
 search_str "data: 1"
+sleep 2
 
 
 
