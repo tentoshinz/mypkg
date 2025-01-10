@@ -3,7 +3,7 @@
 <package format="3">
   <name>mypkg</name>
   <version>0.0.1</version>
-  <description>robosys-task</description>
+  <description>Zellers_congruence</description>
   <maintainer email="tentoshinz@gmail.com">tento</maintainer>
   <license>BSD-3-Clause</license>
   <exec_depend>rclpy</exec_depend>

@@ -18,7 +18,7 @@ setup(
     zip_safe=True,
     maintainer='tento',
     maintainer_email='tentoshinz@gmail.com',
-    description='robosys task',
+    description='Zellers_congruence',
     license='BSD-3-Clause',
     tests_require=['pytest'],
     entry_points={

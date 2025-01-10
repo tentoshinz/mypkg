@@ -1,5 +1,5 @@
-# robosys2024_ros
-![test](https://github.com/tentoshinz/robosys2024_ros/actions/workflows/test.yml/badge.svg)
+# mypkg: Zeller's congruence ROS 2 package
+![test](https://github.com/tentoshinz/mypkg/actions/workflows/test.yml/badge.svg)
 
 ツェラーの公式を用いて曜日を求める ROS 2 パッケージ
 
